@@ -153,7 +153,7 @@ fn extract_enum_data(inner: &Vec<Vec<TokenTree>>) -> Option<u32> {
   }
   Some(max_val)
 }
-/// Autoimplement `InteropReceive` trait for any type containing only `IteropRecive` implementing memebers. Currently supports only structs, and trivial enums(C-like enums) of size less than u64(C# max enum size).
+/// Autoimplement `InteropReceive` trait for any type containing only `IteropRecive` implementing members. Currently supports only structs, and trivial enums(C-like enums) of size less than u64(C# max enum size).
 /// # Rust enums
 /// Can't be used  with rust-like enums(enums with non-value data), since there is no clear way how this should look like on the managed side.
 /// # Safety
@@ -194,9 +194,9 @@ pub fn derive_recive(input: TokenStream) -> TokenStream {
   let inner = TokVec::separate_by_separator(inner, ',');
   if input_type == "struct" {
     let mut ret_self = TokenStream::new();
-    for (i, memeber) in inner.into_iter().enumerate() {
-      let member_name = memeber[0].to_string();
-      let member_type = memeber[2].to_string();
+    for (i, member) in inner.into_iter().enumerate() {
+      let member_name = member[0].to_string();
+      let member_type = member[2].to_string();
       type_res.extend(
         TokenStream::from_str(&format!(
           "<{member_type} as wrapped_mono::InteropReceive>::SourceType,",
@@ -292,9 +292,9 @@ pub fn derive_send(input: TokenStream) -> TokenStream {
   let inner = TokVec::separate_by_separator(inner, ',');
   if input_type == "struct" {
     let mut ret_self = TokenStream::new();
-    for memeber in inner {
-      let member_name = memeber[0].to_string();
-      let member_type = memeber[2].to_string();
+    for member in inner {
+      let member_name = member[0].to_string();
+      let member_type = member[2].to_string();
       type_res.extend(
         TokenStream::from_str(&format!(
           "<{member_type} as wrapped_mono::InteropSend>::TargetType,"
