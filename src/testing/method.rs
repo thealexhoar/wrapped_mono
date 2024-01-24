@@ -330,26 +330,26 @@ rusty_fork_test! {
     }
 }
 use crate::InteropBox;
-use crate::{InteropClass, InteropRecive, InteropSend};
-#[derive(InteropRecive, InteropSend, Copy, Clone, PartialEq)]
+use crate::{InteropClass, InteropReceive, InteropSend};
+#[derive(InteropReceive, InteropSend, Copy, Clone, PartialEq)]
 #[repr(u64)]
 #[allow(dead_code)]
 enum CLikeEnum {
-    Val = 1,
-    Val2 = 2,
-    Val3 = 612,
+  Val = 1,
+  Val2 = 2,
+  Val3 = 612,
 }
 impl InteropBox for CLikeEnum {}
 use crate::assembly::Assembly;
 impl InteropClass for CLikeEnum {
-    fn get_mono_class() -> Class {
-        Class::from_name(
-            &Assembly::assembly_loaded("Test")
-                .expect("Could not find assembly")
-                .get_image(),
-            "",
-            "CLikeEnum",
-        )
-        .expect("Could not get class!")
-    }
+  fn get_mono_class() -> Class {
+    Class::from_name(
+      &Assembly::assembly_loaded("Test")
+        .expect("Could not find assembly")
+        .get_image(),
+      "",
+      "CLikeEnum",
+    )
+    .expect("Could not get class!")
+  }
 }

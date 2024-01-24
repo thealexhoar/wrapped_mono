@@ -1,7 +1,7 @@
 #![allow(
-    clippy::module_name_repetitions,
-    clippy::missing_const_for_fn,
-    clippy::as_ptr_cast_mut
+  clippy::module_name_repetitions,
+  clippy::missing_const_for_fn,
+  clippy::as_ptr_cast_mut
 )]
 //! `wrapped_mono` is a safe, lightweight wrapper around the mono library. It allows embedding of the mono runtime inside a rust project. Inside this embedded runtime code written in languages supporting the .NET framework, such as C\# and F\#, can be run. This allows usage of libraries written in those languages, and using them as a scripting language. The mono runtime is used by many game engines, and this wrapper allows using it with projects written in Rust too.
 //! # Safety
@@ -54,7 +54,7 @@
 //!     }
 //!     // Replace a method with "[MethodImplAttribute(MethodImplOptions.InternalCall)]" atribute with a rust function
 //!     add_internal_call!("SomeClass::SqrtInternalCall",sqrt);
-//!     // This supports all types with `InteropRecive` trait
+//!     // This supports all types with `InteropReceive` trait
 //!     #[invokable]
 //!     fn avg(input:Array<Dim1D,f32>)->f32{
 //!         let mut avg = 0.0;
@@ -129,7 +129,7 @@ pub use exception::Exception;
 #[doc(inline)]
 pub use image::Image;
 #[doc(inline)]
-pub use interop::{InteropBox, InteropClass, InteropRecive, InteropSend};
+pub use interop::{InteropBox, InteropClass, InteropReceive, InteropSend};
 #[doc(inline)]
 pub use method::Method;
 #[doc(inline)]
@@ -142,6 +142,6 @@ pub use reflection_type::ReflectionType;
 /// Custom macros used by `wrapped_mono`
 pub use wrapped_mono_macros; // Custom macros
 #[doc(inline)]
-pub use wrapped_mono_macros::{add_internal_call, invokable, InteropRecive, InteropSend};
+pub use wrapped_mono_macros::{add_internal_call, invokable, InteropReceive, InteropSend};
 static STR2CSTR_ERR: &str = "Cold not create CString!";
 static CSTR2STR_ERR: &str = "Could not convert CString to String";
