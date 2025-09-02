@@ -17,7 +17,6 @@ impl TokVecTraits for TokVec {
   fn from_stream(stream: TokenStream) -> Self {
     let mut res = Vec::new();
     for tok in stream {
-      println!("tok: {}", tok.to_string());
       res.push(tok);
     }
     res
